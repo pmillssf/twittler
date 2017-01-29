@@ -21,8 +21,8 @@
         var publishTime = tweet.created_at.toLocaleString().split(' ');
 
         //add name, time, and tweet
-        $tweetUsername.text('@' + tweet.user + ' ');
-        $tweetPublishTime.text(publishTime[1] + ' ' + publishTime[2])
+        $tweetUsername.text('@' + tweet.user);
+        $tweetPublishTime.text(' ' + publishTime[1] + ' ' + publishTime[2])
         $tweetContent.text(tweet.message)
 
         //add classNames
@@ -39,7 +39,10 @@
 
         //Add username clickability
         $tweetUsername.on('click', function(){
-          alert($(this).text())
+          //alert($(this).text())
+          var name = ($(this).text()).slice(1, $(this).text().length);
+          refreshTweets()
+          displayUsername(name);
         })
 
         if(append){
@@ -73,6 +76,17 @@
         $button.addClass('button refreshbutton');
         $button.on('click', refreshTweets);
         $button.appendTo($('header'));
+      }
+
+      function displayUsername(name){
+        for (i = 0; i < users.length; i++){
+          if (name !== users[i]){
+            console.log(name);
+            console.log(users[i]);
+            var toHide = '.container > .' + users[i];
+            $(toHide).toggleClass('hide');
+          }
+        }
       }
 
       $(document).ready(function(){
