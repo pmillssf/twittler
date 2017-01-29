@@ -9,22 +9,25 @@
   </head>
   <body>
     <script>
-      function tweetCreation(index, append){
+      function createTweet(index, append){
         var tweet = streams.home[index];
         var $container = $('.container');
         var $tweet = $('<div></div>');
-        var $tweetHeader = $('<span></span>');
+        var $tweetUsername = $('<span></span>');
+        var $tweetPublishTime = $('<span></span>');
         var $tweetContent = $('<p></p>');
 
         // define time
         var publishTime = tweet.created_at.toLocaleString().split(' ');
 
         //add name, time, and tweet
-        $tweetHeader.text('@' + tweet.user + ' ' + publishTime[1] + ' ' + publishTime[2]);
+        $tweetUsername.text('@' + tweet.user + ' ');
+        $tweetPublishTime.text(publishTime[1] + ' ' + publishTime[2])
         $tweetContent.text(tweet.message)
 
         //assemble and append/prepend tweet
-        $tweetHeader.appendTo($tweet);
+        $tweetUsername.appendTo($tweet);
+        $tweetPublishTime.appendTo($tweet);
         $tweetContent.appendTo($tweet);
 
         if(append){
@@ -37,7 +40,7 @@
       function onLoad() {
         var index = streams.home.length - 1;
         while(index >= 0){
-          (tweetCreation(index, true));
+          (createTweet(index, true));
           index -= 1;
         }
       }
