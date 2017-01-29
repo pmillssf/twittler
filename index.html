@@ -34,32 +34,34 @@
         $tweetPublishTime.addClass('publishtime');
         $tweetContent.addClass('tweetcontent');
 
-        //assemble and append/prepend tweet
+        //assemble tweet
         $tweetUsername.appendTo($tweet);
         $tweetPublishTime.appendTo($tweet);
         $tweetContent.appendTo($tweet);
 
         //Add username clickability
         $tweetUsername.on('click', function(){
-          //alert($(this).text())
           var name = ($(this).text()).slice(1, $(this).text().length);
-          refreshTweets()
+          refreshTweets();
           displayUsername(name);
-        })
+        });
 
+        //Append or prepend tweets
         if(append){
           $tweet.appendTo($container);
         } else {
           $tweet.prependTo($container);
         }
-      };
+      }
 
       function onLoad() {
         var index = streams.home.length - 1;
+
         while(index >= 0){
           (createTweet(index, true));
           index -= 1;
         }
+
         refreshButton();
         homeButton();
         $('header > .homebutton').addClass('hide');
@@ -69,6 +71,7 @@
       function refreshTweets(){
         var index = $('.tweet').length - 1;
         var totalTweets = streams.home.length - 1;
+
         while(totalTweets !== index){
           (createTweet(index, false));
           index += 1;
@@ -112,20 +115,6 @@
       $(document).ready(function(){
         onLoad();
       });
-      /*
-      requirements:
-      Show new tweets via button
-      Display timestamps of when tweets were created.
-      Design interface UI/UX to be usable and likeable
-      A username on click should display that users timeline
-      */
-      // Add more structure to html
-      // Define display on load function
-      // Update display to inculde timestamps
-      // Define display new function
-      // Add username on click functionality
-      // Style css
-
     </script>
     <header></header>
     <div class="container"></div>
