@@ -5,3 +5,10 @@
 .hide {
 	display: none;
 }
+
+.username, .button, .publishtime{
+	font-family: 'Ovo', serif;
+}
+.tweetcontent{
+	font-family: 'Vollkorn', serif;
+}
