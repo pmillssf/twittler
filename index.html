@@ -37,6 +37,11 @@
         $tweetPublishTime.appendTo($tweet);
         $tweetContent.appendTo($tweet);
 
+        //Add username clickability
+        $tweetUsername.on('click', function(){
+          alert($(this).text())
+        })
+
         if(append){
           $tweet.appendTo($container);
         } else {
@@ -46,9 +51,20 @@
 
       function onLoad() {
         var index = streams.home.length - 1;
+        console.log(index);
         while(index >= 0){
           (createTweet(index, true));
           index -= 1;
+        }
+        console.log($('.tweet').length);
+      }
+
+      function refreshTweets(){
+        var index = $('.tweet').length - 1;
+        var totalTweets = streams.home.length - 1;
+        while(totalTweets !== index){
+          (createTweet(index, false));
+          index += 1;
         }
       }
 
@@ -65,9 +81,9 @@
       // Add more structure to html
       // Define display on load function
       // Update display to inculde timestamps
-      // Style css
       // Define display new function
       // Add username on click functionality
+      // Style css
 
     </script>
     <div class="container"></div>
