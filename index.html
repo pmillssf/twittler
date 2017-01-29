@@ -9,16 +9,35 @@
   </head>
   <body>
     <script>
-      function onLoad() {
+      function tweetCreation(index, append){
+        var tweet = streams.home[index];
         var $container = $('.container');
-        $container.html('');
+        var $tweet = $('<div></div>');
+        var $tweetHeader = $('<span></span>');
+        var $tweetContent = $('<p></p>');
 
+        // define time
+        var publishTime = tweet.created_at.toLocaleString().split(' ');
+
+        //add name, time, and tweet
+        $tweetHeader.text('@' + tweet.user + ' ' + publishTime[1] + ' ' + publishTime[2]);
+        $tweetContent.text(tweet.message)
+
+        //assemble and append/prepend tweet
+        $tweetHeader.appendTo($tweet);
+        $tweetContent.appendTo($tweet);
+
+        if(append){
+          $tweet.appendTo($container);
+        } else {
+          $tweet.prependTo($container);
+        }
+      };
+
+      function onLoad() {
         var index = streams.home.length - 1;
         while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($container);
+          (tweetCreation(index, true));
           index -= 1;
         }
       }
