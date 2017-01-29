@@ -59,6 +59,9 @@
           index -= 1;
         }
         refreshButton();
+        homeButton();
+        $('header > .homebutton').addClass('hide');
+
       }
 
       function refreshTweets(){
@@ -78,6 +81,20 @@
         $button.appendTo($('header'));
       }
 
+      function homeButton(){
+        var $button = $('<button></button>');
+        $button.text('Home Stream');
+        $button.addClass('button homebutton');
+        $button.on('click', displayAll);
+        $button.appendTo($('header'));
+      }
+
+      function displayAll(){
+        refreshTweets();
+        $('.container > .tweet').removeClass('hide');
+        $('header > .homebutton').addClass('hide');
+      }
+
       function displayUsername(name){
         for (i = 0; i < users.length; i++){
           if (name !== users[i]){
@@ -87,6 +104,7 @@
             $(toHide).toggleClass('hide');
           }
         }
+        $('header > .homebutton').removeClass('hide');
       }
 
       $(document).ready(function(){
