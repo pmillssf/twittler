@@ -25,6 +25,13 @@
         $tweetPublishTime.text(publishTime[1] + ' ' + publishTime[2])
         $tweetContent.text(tweet.message)
 
+        //add classNames
+        $tweet.addClass('tweet');
+        $tweet.addClass(tweet.user);
+        $tweetUsername.addClass('username');
+        $tweetPublishTime.addClass('publishtime');
+        $tweetContent.addClass('tweetcontent');
+
         //assemble and append/prepend tweet
         $tweetUsername.appendTo($tweet);
         $tweetPublishTime.appendTo($tweet);
