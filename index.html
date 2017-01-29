@@ -51,12 +51,11 @@
 
       function onLoad() {
         var index = streams.home.length - 1;
-        console.log(index);
         while(index >= 0){
           (createTweet(index, true));
           index -= 1;
         }
-        console.log($('.tweet').length);
+        refreshButton();
       }
 
       function refreshTweets(){
@@ -66,6 +65,14 @@
           (createTweet(index, false));
           index += 1;
         }
+      }
+
+      function refreshButton(){
+        var $button = $('<button></button>');
+        $button.text('Refresh Tweets');
+        $button.addClass('button refreshbutton');
+        $button.on('click', refreshTweets);
+        $button.appendTo($('header'));
       }
 
       $(document).ready(function(){
@@ -86,6 +93,7 @@
       // Style css
 
     </script>
+    <header></header>
     <div class="container"></div>
   </body>
 </html>
