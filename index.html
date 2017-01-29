@@ -24,8 +24,8 @@
 
         //add name, time, and tweet
         $tweetUsername.text('@' + tweet.user);
-        $tweetPublishTime.text(' ' + publishTime[1] + ' ' + publishTime[2])
-        $tweetContent.text(tweet.message)
+        $tweetPublishTime.text(' ' + publishTime[1] + ' ' + publishTime[2] + ' ' + publishTime[0]);
+        $tweetContent.text(tweet.message);
 
         //add classNames
         $tweet.addClass('tweet');
